@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мебельная фирма Innova</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+</head>
+
+<body>
+    <header>
+        <h1>Каталог мебельной фирмы Innova</h1>
+    </header>
+    
+    <div class="full-width-links">
+    <a href="https://wa.me/89525917875/?text=Здравствуйте, я бы хотел приобрести мебель." target="_blank">Заказ существующей модели мебели</a>
+    <a href="https://wa.me/89525917875/?text=Здравствуйте, я бы хотел заказать разработку мебели." target="_blank">Заказ на разработку уникальной продукции</a>
+    </div>
+    
+    <h2>Товары со скидкой</h2>
+    <section id="discounts" class="scrolling-section">
+    {% for product in sale_products %}
+        <div class="product" style="background-image: url('images/{{ product.id }}.jpg');">
+            <div class="info">
+                <p>Модель: {{ product.model }} </p>
+                <p>Тип: {{ product.type }} </p>
+                <p>Цвет: {{ product.color }} </p>
+                <p>Материал: {{ product.material }} </p>
+                <p>Цена (руб): {{ product.price }} </p>
+            </div>
+        </div>
+    {% endfor %}
+    </section>
+
+    <h2>Наиболее популярные товары</h2>
+    <section id="top-products" class="scrolling-section">
+    {% for product in top_products %}
+        <div class="product" style="background-image: url('images/{{ product.id }}.jpg');">
+            <div class="info">
+                <p>Модель: {{ product.model }} </p>
+                <p>Тип: {{ product.type }} </p>
+                <p>Цвет: {{ product.color }} </p>
+                <p>Материал: {{ product.material }} </p>
+                <p>Цена (руб): {{ product.price }} </p>
+            </div>
+        </div>
+    {% endfor %}
+    </section>
+
+    <h2>Новинки</h2>
+    <section id="new-arrivals" class="scrolling-section">
+    {% for product in new_products %}
+        <div class="product" style="background-image: url('images/{{ product.id }}.jpg');">
+            <div class="info">
+                <p>Модель: {{ product.model }} </p>
+                <p>Тип: {{ product.type }} </p>
+                <p>Цвет: {{ product.color }} </p>
+                <p>Материал: {{ product.material }} </p>
+                <p>Цена (руб): {{ product.price }} </p>
+            </div>
+        </div>
+    {% endfor %}
+    </section>
+    
+    <h2>Все остальные товары</h2>
+    <section id="discounts" class="scrolling-section">
+    {% for product in another_products %}
+        <div class="product" style="background-image: url('images/{{ product.id }}.jpg');">
+            <div class="info">
+                <p>Модель: {{ product.model }} </p>
+                <p>Тип: {{ product.type }} </p>
+                <p>Цвет: {{ product.color }} </p>
+                <p>Материал: {{ product.material }} </p>
+                <p>Цена (руб): {{ product.price }} </p>
+            </div>
+        </div>
+    {% endfor %}
+    </section>
+    
+    <script src="script.js"></script>
+</body>
+
+<footer>
+        <p>&copy; 2024 Иннова. All Rights Reserved.</p>
+</footer>
+
+</html>
