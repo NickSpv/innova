@@ -84,7 +84,7 @@ class Catalog extends AbstractController
         return json_decode($json, true);;
     }
 
-    #[Route('api/put_data')]
+    #[Route('/put_data')]
     public function receiveJsonFromSpecificIp(Request $request): Response
     {
 
