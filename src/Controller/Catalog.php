@@ -101,7 +101,7 @@ class Catalog extends AbstractController
         // Здесь можно обрабатывать полученные данные
         // Например, вывести полученный JSON или сохранить его в базу данных
         // var_dump($data);
-        $jsonData = $data;
+        $jsonData = $request->getContent();
         $fileName = 'data.json';
         $filePath = $this->getParameter('kernel.project_dir') . '/public/json/' . $fileName;
 
@@ -109,7 +109,5 @@ class Catalog extends AbstractController
 
         return $this->json(['message' => 'Received JSON data'], 200);
     }
-
-
 
 }
