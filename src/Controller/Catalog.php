@@ -87,9 +87,22 @@ class Catalog extends AbstractController
     #[Route('/api/put_data')]
     public function receiveJsonFromSpecificIp(Request $request): Response
     {
-        $content = $request->getContent();
-        $this->jsonData = json_decode($content, true);
-        return new Response('Данные получены успешно', 200);
+
+        $data = json_decode($request->getContent(), true);
+
+        if ($data === null) {
+            // Если JSON не валиден
+            return $this->json(['error' => 'Invalid JSON'], 400);
+        }
+
+        // Здесь можно обрабатывать полученные данные
+        // Например, вывести полученный JSON или сохранить его в базу данных
+        // var_dump($data);
+        $this->jsonData = $data;
+
+        return $this->json(['message' => 'Received JSON data'], 200);
     }
+
+
 
 }
