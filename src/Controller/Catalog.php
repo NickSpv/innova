@@ -84,20 +84,11 @@ class Catalog extends AbstractController
         return json_decode($json, true);;
     }
 
-    public function receiveJsonFromSpecificIp(Request $request)
+    #[Route('/api/put_data')]
+    public function receiveJsonFromSpecificIp(Request $request): Response
     {
-        $allowedIp = '194.35.118.108';
-
-        $clientIp = $request->getClientIp();
-
-        if ($clientIp !== $allowedIp) {
-            return new Response('Доступ запрещен', 403);
-        }
-
         $content = $request->getContent();
         $this->jsonData = json_decode($content, true);
-
-
         return new Response('Данные получены успешно', 200);
     }
 
