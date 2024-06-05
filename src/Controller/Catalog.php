@@ -9,17 +9,20 @@ use Symfony\Bridge\Twig\Attribute\Template;
 
 class Catalog extends AbstractController
 {
-    private array $jsonData = array();
-
     #[Route('')]
     #[Template('catalog.html.twig')]
     public function index(): array
     {
-        if (empty($this->jsonData)) {
+
+        $filePath = $this->getParameter('kernel.project_dir') . '/public/json/data.json' ;
+
+        if (!file_exists($filePath)) {
             $data = $this->getDefaultJsonData();
         } else {
-            $data = $this->jsonData;
+            $jsonData = file_get_contents($filePath);
+            $data = json_decode($jsonData, true);
         }
+
 
         return [
             'sale_products' => $data['sale_products'],
@@ -98,7 +101,11 @@ class Catalog extends AbstractController
         // Здесь можно обрабатывать полученные данные
         // Например, вывести полученный JSON или сохранить его в базу данных
         // var_dump($data);
-        $this->jsonData = $data;
+        $jsonData = $data;
+        $fileName = 'data.json';
+        $filePath = $this->getParameter('kernel.project_dir') . '/public/json/' . $fileName;
+
+        file_put_contents($filePath, $jsonData);
 
         return $this->json(['message' => 'Received JSON data'], 200);
     }
